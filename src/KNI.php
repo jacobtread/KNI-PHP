@@ -130,17 +130,14 @@ class KNI {
                     if (!$is_valid) {
                         continue;
                     }
-                    $level = $element->Level;
-                    $subject = $element->Subject;
-                    $body = $element->Body;
-                    if ($body instanceof SimpleXMLElement) {
-                        $body = '';
-                    }
-                    $teacher = $element->Teacher;
+                    $level = (string)$element->Level;
+                    $subject = (string)$element->Subject;
+                    $body = (string)$element->Body;
+                    $teacher = (string)$element->Teacher;
                     if ($is_meeting) {
-                        $place = $element->PlaceMeet;
-                        $date_meet = $element->DateMeet;
-                        $time = $element->TimeMeet;
+                        $place = (string)$element->PlaceMeet;
+                        $date_meet = (string)$element->DateMeet;
+                        $time = (string)$element->TimeMeet;
                         array_push($notices, new MeetingNotice($level, $subject, $body, $teacher, $place, $date_meet, $time));
                     } else {
                         array_push($notices, new Notice($level, $subject, $body, $teacher));
