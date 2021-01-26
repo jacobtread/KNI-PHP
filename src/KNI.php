@@ -84,12 +84,12 @@ class KNI {
                 $elements = [];
                 # Check if the meeting notices element exists
                 if (isset($xml->MeetingNotices)) {
+                    /** @var SimpleXMLElement $meeting_notices */
+                    $meeting_notices = $xml->MeetingNotices;
                     # Check if there are any meeting notice elements
                     if (isset($xml->MeetingNotices->Meeting)) {
-                        $data = $xml->MeetingNotices->Meeting;
-                        if (is_array($data)) {
-                            $elements = (array) $data;
-                        } else {
+                        /** @var SimpleXMLElement $data */
+                        foreach ($xml->MeetingNotices->Meeting as $data) {
                             array_push($elements, $data);
                         }
                     }
@@ -99,21 +99,8 @@ class KNI {
                 if (isset($xml->GeneralNotices)) {
                     # Check if there are any general notice elements
                     if (isset($xml->GeneralNotices->General)) {
-                        $data = $xml->GeneralNotices->General;
-                        # If no meeting elements then just set the elements list to the general elements
-                        if (sizeof($elements) == 0) {
-                            if (is_array($data)) {
-                                $elements = (array) $data;
-                            } else {
-                                array_push($elements, $data);
-                            }
-                        } else {
-                            # If meeting elements merge the elements with the general elements
-                            if(is_array($data)) {
-                                $elements = array_merge($elements, $data);
-                            } else {
-                                array_push($elements, $data);
-                            }
+                        foreach ($xml->GeneralNotices->General as $data) {
+                            array_push($elements, $data);
                         }
                     }
                 }
