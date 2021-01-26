@@ -3,6 +3,7 @@
   "description": "KAMAR Notices Interface - A way to access notices from KAMAR in a bunch of languages (PHP)",
   "keywords": ["my package", "composer", "package"],
   "authors": [ { "name": "Jacob Read", "email": "jacobtread@gmail.com" } ],
+  "version": "1.0.1",
   "require": {
     "php": ">=7.4",
     "symfony/http-client": "^5.2",
